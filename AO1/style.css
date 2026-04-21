@@ -1,0 +1,47 @@
+/* COMMENT: define the specific class to make style changes to (eg. make the font bigger/do padding/change colour of object, etc.) */
+.header {
+    font-size: 50px;
+    padding: 10px 50px;
+    margin:auto;
+    text-align:center;
+    width:1000px;
+}
+
+
+.subheader {
+    font-size: 30px;
+    padding: 20px 50px;
+    margin:auto;
+    text-align:center;
+    width:1500px;
+}
+
+.question {
+    font-size: 40px;
+    padding: 15px 80px;
+    margin:auto;
+    text-align:center;
+    width:1000px;
+}
+
+.answer {
+    font-size: 28px;
+    padding: 20px 50px;
+    margin:auto;
+    text-align:center;
+    width:1000px;
+}
+
+.gif-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 450px);
+    gap: 70px;
+    justify-content: center; 
+    margin-top: 20px;
+    padding: 0 50px;
+}
+
+.gif-grid img {
+    width: 500px;
+    height: 300px;
+}
