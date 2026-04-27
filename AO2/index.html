@@ -5,9 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- add the font family of your choice -->
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
+      <style>
+        body {
+          font-family: 'Monoton', cursive;
+          margin: 0;
+          padding: 0;
+          color: #f0f0f0;
+          background: linear-gradient(to bottom, #383737 10%, #ffbf00 94%);
+        }
+
+        
+      </style>
   </head>
   <body>
     <!-- Header Section -->
@@ -29,11 +41,13 @@
     <!-- Main Content Section -->
     <main class="container">
       <!-- Media Player Section -->
-      <div class="media-player">
-        <video id="custom-video-player" controls>
+      <div class="media-player" style= "display: flex; align-items: center; justify-content: center;">
+        
+          <video id="custom-video-player" controls>
           <source
             src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4"
             type="video/mp4"
+            
           />
         </video>
         <div class="custom-controls">
