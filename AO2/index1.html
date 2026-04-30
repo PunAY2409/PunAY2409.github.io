@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="demoButton">Press me!</button>
+</body>
+<script>
+    const audio = new Audio ()
+    audio.src = "soundfiles/p-hase_Dry-Down-feat-Ben-Snaath.mp3"
+    const button = document.getElementById ("demoButton")
+    button.onpointerdown = () => audio.play ()
+</script>
+</html>
