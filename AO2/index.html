@@ -3,62 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <!-- <title>Document</title> -->
     <!-- add the font family of your choice -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-      <style>
-        h1 {
-          font-family: 'Anta', sans-serif;
-          font-size: 3rem;
-          text-align: center;
-          margin: 20px;
-          padding: 0;
-          color: #909090;
-        }
-
-        body {
-          font-family: 'Monoton', cursive;
-          font-size: 2.2rem;
-          text-align: center;
-          margin: 0;
-          padding: 0;
-          color: #f0f0f0;
-          background: linear-gradient(to bottom, #201919 41%, #988038 61%);
-        }
-
-        
-      </style>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet"> -->
+    <title>Lofi Radio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Monoton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <!-- Header Section -->
-    <header>
-      <h1>Lofi Radio Site</h1>
-    </header>
-
-    <!-- Navigation Section -->
-    <nav>
-    
-    </nav>
-
-    <!-- Main Content Section -->
-    <main class="container">
-      <!-- Media Player Section -->
-      <div class="media-player" style= "display: flex; align-items: center; justify-content: center;">
-        
-          <video id="custom-video-player" controls>
-          <source
-            src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4"
-            type="video/mp4"
-            
-            
-          />
+    <h1>Lofi Radio</h1>
+    <main class="media-player">
+      <div class="video-container" id="video-container">
+        <video id="custom-video-player" loop>
+          <source src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4" type="video/mp4" />
         </video>
-        <div class="custom-controls">
+        <!-- <div class="custom-controls">
           <button id="play-pause-btn" onclick="togglePlayPause()">
             <img
               id="play-pause-img"
@@ -67,25 +31,61 @@
               width="24"
               height="24"
             />
-          </button>
+          </button> -->
           <!-- add the missing buttons or functionality here -->
-          <div class="progress-bar">
-            <span id="progress-bar-fill"></span>
+          <!-- <div class="progress-bar">
+            <span id="progress-bar-fill"></span> -->
           </div>
+          <div class="controls">
+            <button class="button side" onclick="skip(-1)"><img src="https://img.icons8.com/ios-glyphs/30/rewind.png" width="20" height="25"/></button>
+            <button class="button main" id="play-btn" onclick="togglePlay()"><img id="play-icon" src="https://img.icons8.com/?size=100&id=fKjdxWYsIQbi&format=png&color=000000" width="20" height="25"/></button>
+            <button class="button side" onclick="skip(1)"><img src="https://img.icons8.com/ios-glyphs/30/fast-forward.png" width="20" height="25"/></button>
+        </div>
         </div>
       </div>
 
       <!-- Additional Content Section -->
-      <section>
+      <!-- <section>
         <h2>Additional Content</h2>
-        <p>This is where you can showcase any other relevant content.</p>
+        <p>This is where you can showcase any other relevant content.</p> -->
         <!-- Add more content as needed -->
-      </section>
+      <!-- </section> -->
+      <input type="range" class="slider" id="progress" min="0" max="100" value="0">
     </main>
 
     <!-- Footer Section -->
     <footer>
       <p>&copy; 2024 Lofi Radio Site. All rights reserved.</p>
-    </footer>
+    </footer> 
+
+    <script>
+      const vid = document.getElementById('custom-video-player');
+      const vCont = document.getElementById('video-container');
+      const icon = document.getElementById('play-icon');
+      const prog = document.getElementById('progress');
+      let drag = false;
+
+      // Pause the background animation initially so it only breathes when playing
+      document.body.style.animationPlayState = 'paused';
+
+      function togglePlay() {
+        if (vid.paused) {
+          vid.play();
+          icon.src = "https://img.icons8.com/?size=100&id=AibrGCLNeCYz&format=png&color=000000";
+          // Resume breathing animation when song is playing
+          document.body.style.animationPlayState = 'running';
+        } else {
+          vid.pause();
+          icon.src = "https://img.icons8.com/?size=100&id=fKjdxWYsIQbi&format=png&color=000000";
+          // Pause breathing animation when song is paused
+          document.body.style.animationPlayState = 'paused';
+        }
+      }
+
+      vid.ontimeupdate = () => { if (!drag && vid.duration) prog.value = (vid.currentTime/vid.duration)*100; };
+      prog.onmousedown = prog.ontouchstart = () => drag = true;
+      prog.onmouseup = prog.ontouchend = () => drag = false;
+      prog.oninput = () => vid.currentTime = (prog.value/100)*vid.duration;
+    </script>
   </body>
 </html>
