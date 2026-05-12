@@ -26,9 +26,9 @@
         <p2>Erokia - Ambient Wave</p2>
           </div>
           <div class="controls">
-            <button class="button side" onclick="skip(-1)"><img src="https://img.icons8.com/ios-glyphs/30/rewind.png" width="20" height="25"/></button>
+            <button class="button side" onclick="rewind(5)"><img src="https://img.icons8.com/ios-glyphs/30/rewind.png" width="20" height="25"/></button>
             <button class="button main" id="play-btn" onclick="togglePlay()"><img id="play-icon" src="https://img.icons8.com/?size=100&id=fKjdxWYsIQbi&format=png&color=000000" width="20" height="25"/></button>
-            <button class="button side" onclick="skip(1)"><img src="https://img.icons8.com/ios-glyphs/30/fast-forward.png" width="20" height="25"/></button>
+            <button class="button side" onclick="fastForward(5)"><img src="https://img.icons8.com/ios-glyphs/30/fast-forward.png" width="20" height="25"/></button>
         </div>
         </div>
       </div>
@@ -62,7 +62,13 @@
           document.body.style.animationPlayState = 'paused';
         }
       }
+      function fastForward(value) {
+        audio.currentTime += value * 1; // Skip forward by 10 seconds
+      }
 
+      function rewind(value) {
+        audio.currentTime -= value * 1; // Skip backward by 10 seconds
+      }
       audio.ontimeupdate = () => { if (!drag && audio.duration) prog.value = (audio.currentTime/audio.duration)*100; };
       prog.onmousedown = prog.ontouchstart = () => drag = true;
       prog.onmouseup = prog.ontouchend = () => drag = false;
