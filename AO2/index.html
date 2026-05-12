@@ -18,10 +18,14 @@
   <body>
     <h1>Lofi Radio</h1>
     <main class="media-player">
+      <div class="album-art"></div>
       <div class="media-container" id="media-container">
-        <media id="custom-lofi-player" loop>
+        <audio id="custom-lofi-player" loop>
           <source src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/erokia_ambient-wave-56-msfxp7-78.mp3" type="audio/mpeg" />
-        </media>
+        </audio>
+      <div class="song title">
+        <p2>Erokia - Ambient Wave</p2>
+      </div>
         <!-- <div class="custom-controls">
           <button id="play-pause-btn" onclick="togglePlayPause()">
             <img
@@ -83,10 +87,10 @@
         }
       }
 
-      media.ontimeupdate = () => { if (!drag && media.duration) prog.value = (media.currentTime/media.duration)*100; };
+      audio.ontimeupdate = () => { if (!drag && audio.duration) prog.value = (audio.currentTime/audio.duration)*100; };
       prog.onmousedown = prog.ontouchstart = () => drag = true;
       prog.onmouseup = prog.ontouchend = () => drag = false;
-      prog.oninput = () => media.currentTime = (prog.value/100)*media.duration;
+      prog.oninput = () => audio.currentTime = (prog.value/100)*audio.duration;
     </script>
   </body>
 </html>

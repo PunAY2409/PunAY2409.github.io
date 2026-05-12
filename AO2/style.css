@@ -57,6 +57,15 @@ h1 {
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+.album-art {
+    width: 300px;
+    height: 300px;
+    background: url('lofi_player/album.jpeg') center center/cover no-repeat;
+    border: 3px solid rgba(27, 221, 121, 0.247);
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.05);
+}
 /* Video Placeholder */
 #custom-lofi-player {
     width: 100%;
