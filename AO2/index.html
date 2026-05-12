@@ -18,10 +18,10 @@
   <body>
     <h1>Lofi Radio</h1>
     <main class="media-player">
-      <div class="video-container" id="video-container">
-        <video id="custom-video-player" loop>
-          <source src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4" type="video/mp4" />
-        </video>
+      <div class="media-container" id="media-container">
+        <media id="custom-lofi-player" loop>
+          <source src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/erokia_ambient-wave-56-msfxp7-78.mp3" type="audio/mpeg" />
+        </media>
         <!-- <div class="custom-controls">
           <button id="play-pause-btn" onclick="togglePlayPause()">
             <img
@@ -59,33 +59,34 @@
     </footer> 
 
     <script>
-      const vid = document.getElementById('custom-video-player');
-      const vCont = document.getElementById('video-container');
+      const audio = document.getElementById('custom-lofi-player');
+      const vCont = document.getElementById('media-container');
       const icon = document.getElementById('play-icon');
       const prog = document.getElementById('progress');
+      
       let drag = false;
 
       // Pause the background animation initially so it only breathes when playing
       document.body.style.animationPlayState = 'paused';
 
       function togglePlay() {
-        if (vid.paused) {
-          vid.play();
+        if (audio.paused) {
+          audio.play();
           icon.src = "https://img.icons8.com/?size=100&id=AibrGCLNeCYz&format=png&color=000000";
           // Resume breathing animation when song is playing
           document.body.style.animationPlayState = 'running';
         } else {
-          vid.pause();
+          audio.pause();
           icon.src = "https://img.icons8.com/?size=100&id=fKjdxWYsIQbi&format=png&color=000000";
           // Pause breathing animation when song is paused
           document.body.style.animationPlayState = 'paused';
         }
       }
 
-      vid.ontimeupdate = () => { if (!drag && vid.duration) prog.value = (vid.currentTime/vid.duration)*100; };
+      media.ontimeupdate = () => { if (!drag && media.duration) prog.value = (media.currentTime/media.duration)*100; };
       prog.onmousedown = prog.ontouchstart = () => drag = true;
       prog.onmouseup = prog.ontouchend = () => drag = false;
-      prog.oninput = () => vid.currentTime = (prog.value/100)*vid.duration;
+      prog.oninput = () => media.currentTime = (prog.value/100)*media.duration;
     </script>
   </body>
 </html>

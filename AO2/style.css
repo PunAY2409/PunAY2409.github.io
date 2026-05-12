@@ -48,17 +48,17 @@ h1 {
 }
 
 /* Video Border */
-.video-container {
+.media-container {
     border: 3px solid rgba(255, 217, 0, 0.247); 
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 6px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(49, 41, 17, 0.6);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.05);
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 /* Video Placeholder */
-#custom-video-player {
+#custom-lofi-player {
     width: 100%;
     max-width: 5000px;
     border-radius: 20px;
@@ -97,6 +97,7 @@ h1 {
 /* Slider */
 .slider {
     -webkit-animation: none;
+    animation: none;
     appearance: none;
     width: 100%;
     height: 6px;
