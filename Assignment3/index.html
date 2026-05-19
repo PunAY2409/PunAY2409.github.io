@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .button_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    #example_button {
+        background-color: red;
+        border-radius: 20px;
+        height: 200px;
+        width: 400px;
+        font-size: 6rem;
+        border: grey solid 2px;
+        color: white;
+        transition: background-color 0.5s ease, transform 5s ease;
+    }
+
+    #example_button:hover {
+        background-color: blue;
+        transform: rotate(720deg) scale(0.5);
+    }
+
+    #example_button:active {
+        background-color: rgb(130, 5, 5);
+    }
+    </style>
+</head>
+<body>
+    <div class="button_container">
+        <button id="example_button">TEST</button>
+    </div>
+</body>
+</html>
