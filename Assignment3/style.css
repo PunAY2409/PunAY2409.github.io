@@ -1,0 +1,29 @@
+h1{
+    font-family: 'Great Vibes', cursive;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+html, body { height: 100%; margin: 0; overflow: hidden}
+
+body {
+    font-family: 'Domine', serif;
+    font-size: 32px;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgb(81, 81, 81);
+    background-size: 150% 150%;
+}
+
+// Animating gradient bg slowly //
+
+@keyframes AnimateGradient{
+    0%
+}
