@@ -15,17 +15,12 @@ setSize ()
 window.onresize = setSize
 
 function drawFrame (ms) {
-    //ctx.fillStyle = "grey"
-    //ctx.fillRect (0, 0, cnv.width, cnv.height)
-
+    ctx.clearRect (0, 0, cnv.width, cnv.height) /* Show transparent linear gradient on background */
+    ctx.lineCap = "round"
+    ctx.lineJoin = "round"
+    ctx.lineWidth = 10
     ctx.fillStyle = "turquoise"
-    clickPositions.forEach (pos => {
-        const x = pos.x + Math.random () * 10
-        ctx.fillRect (x, pos.y, 10, 10)
-    })
-
-    window.requestAnimationFrame (drawFrame)
-    // console.log (`${ Math.floor (ms) } milliseconds elapsed`)
+    cnv.style.cursor = "circle"
 }
 
 drawFrame ()

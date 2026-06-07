@@ -13,17 +13,34 @@ html, body { height: 100%; margin: 0; overflow: hidden}
 body {
     font-family: 'Domine', serif;
     font-size: 32px;
-    color: white;
     text-align: center;
     margin-top: 10px;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgb(81, 81, 81);
-    background-size: 150% 150%;
+    background: linear-gradient(to right top,
+                #1a1a1a, #f5f7fa, 
+                #ff9a9e, #a18cd1, 
+                #fda085, #f6d365, 
+                #c0c0c0, #a1c4fd);
+            background-size: 400% 400%;
+            animation: gradient 50s ease infinite; /* apply loop animation for gradient */
 }
 
-// Animating gradient bg slowly //
-
-@keyframes AnimateGradient{
-    0%
+#canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
 }
+
+/* Animating background gradient */
+@keyframes gradient {
+    0% {background-position: 0% 50%}
+    50% {background-position: 100% 50%}
+    100% {background-position: 0% 50%}
+}
+
+/* Applying animation duration to background */
+
+/*body {
+    animation: gradient 20s ease infinite;
+} */
