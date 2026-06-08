@@ -1,7 +1,7 @@
 h1{
     font-family: 'Great Vibes', cursive;
     font-size: 50px;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     margin-top: 20px;
     display: flex;
@@ -12,19 +12,30 @@ html, body { height: 100%; margin: 0; overflow: hidden}
 
 body {
     font-family: 'Domine', serif;
-    font-size: 32px;
+    font-size: 20px;
+    color: rgb(140, 140, 140);
+    padding-bottom: 20px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 1px;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right top,
-                #1a1a1a, #f5f7fa, 
-                #ff9a9e, #a18cd1, 
-                #fda085, #f6d365, 
-                #c0c0c0, #a1c4fd);
+
+    background-image: linear-gradient(to right top, #fd621f, #f38a2a, #eaaa46, #e3c46c, #e0db96, #e4d18b, #e8c781, #ecbd79, #fb855e, #fb3a72, #d200a7, #332be5);
             background-size: 400% 400%;
-            animation: gradient 50s ease infinite; /* apply loop animation for gradient */
+            animation: gradient 30s ease infinite; /* apply loop animation for gradient */
 }
+
+footer {
+    font-family: 'Domine', serif;
+    font-size: 16px;
+    color: rgb(248, 214, 214);
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10px; }
 
 #canvas {
     display: block;
