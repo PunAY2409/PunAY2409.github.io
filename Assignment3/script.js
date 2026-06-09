@@ -1,12 +1,12 @@
+// script.js
 document.body.style.margin = 0
 document.body.style.overflow = "hidden"
 
 const cnv = document.getElementById ("canvas")
 const ctx = cnv.getContext ("2d")
 
-let drawing = false
-let lastX = 0
-let lastY = 0
+let isDragging = false
+let color = "white"
 
 function setSize () {
     cnv.width = window.innerWidth
@@ -16,50 +16,82 @@ function setSize () {
 setSize ()
 window.onresize = setSize
 
-ctx.strokeStyle = "#FFFFED"
-ctx.lineWidth = 15
-ctx.lineCap = "round"
-ctx.lineJoin = "round"
-cnv.style.cursor = "crosshair"
+function randomColor () {
+    const r = Math.floor (Math.random () * 256)
+    const g = Math.floor (Math.random () * 256)
+    const b = Math.floor (Math.random () * 256)
+    return `rgb(${ r }, ${ g }, ${ b })`
+}
 
-// Get the coordinates of a pointer event relative to the canvas
-function getCanvasPoint (action) {
-    const rect = cnv.getBoundingClientRect ()
-    return {
-        x: action.clientX - rect.left,
-        y: action.clientY - rect.top
+class DisappearingCircle {
+    // atributes //
+    constructor (size, col, pos) {
+        this.pos = pos
+        this.size = size
+        this.col = col
+    }
+
+    // methods //
+    animate () {
+        this.size -= 0.08
+    }
+
+    draw () {
+        if (this.size <= 0) return
+        ctx.fillStyle = this.col
+        ctx.beginPath ()
+        ctx.arc (this.pos.x, this.pos.y, this.size, 0, 2 * Math.PI)
+        ctx.fill ()
+    }
+
+    isAlive () {
+        return this.size > 0
     }
 }
 
-function startDrawing (action) {
-    // Prevent the default behavior of the pointer event (e.g., scrolling, text selection)
-    action.preventDefault ()
-    drawing = true
-    // Get the initial coordinates of the pointer event relative to the canvas
-    const p = getCanvasPoint (action)
-    lastX = p.x
-    lastY = p.y
+const circlesArray = []
+
+function handleMouseDown (event) {
+    color = randomColor ()
+    const pos = { x: event.offsetX, y: event.offsetY }
+    circlesArray.push (new DisappearingCircle (30, color, pos))
+    isDragging = true   
 }
 
-function draw (action) {
-    if (!drawing) return
-    // Prevent the default behavior of the pointer event (e.g., scrolling, text selection)
-    action.preventDefault ()
-    const p = getCanvasPoint (action)
-    ctx.beginPath ()
-    ctx.moveTo (lastX, lastY)
-    ctx.lineTo (p.x, p.y)
-    ctx.stroke ()
-    lastX = p.x
-    lastY = p.y
+function handleMouseMove (event) {
+    if (!isDragging) return
+    const pos = { x: event.offsetX, y: event.offsetY }
+    circlesArray.push (new DisappearingCircle (30, color, pos))
 }
 
-function stopDrawing () {
-    drawing = false
+function handleMouseUp (event) {
+    isDragging = false
 }
 
-cnv.addEventListener ("pointerdown", startDrawing)
-cnv.addEventListener ("pointermove", draw)
-cnv.addEventListener ("pointerup", stopDrawing)
-cnv.addEventListener ("pointercancel", stopDrawing)
-cnv.addEventListener ("pointerleave", stopDrawing)
+cnv.addEventListener ("mousedown", handleMouseDown)
+cnv.addEventListener ("mousemove", handleMouseMove)
+cnv.addEventListener ("mouseup", handleMouseUp)
+
+function drawFrame () {
+    
+    // clear the canvas
+    ctx.clearRect (0, 0, cnv.width, cnv.height)
+
+    circlesArray.forEach ((circle, index) => {
+        if (!circle.isAlive ()) {
+
+            //remove the circle from the array if it's no longer alive//
+            circlesArray.splice (index, 1)
+
+            // skip the rest of the loop for this circle //
+            return
+        }
+        circle.animate ()
+        circle.draw ()
+    })
+   
+
+    requestAnimationFrame (drawFrame)
+}
+
+drawFrame ()
