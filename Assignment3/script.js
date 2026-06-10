@@ -4,18 +4,27 @@ document.body.style.overflow = "hidden"
 
 const cnv = document.getElementById ("canvas")
 const ctx = cnv.getContext ("2d")
-
 const bgm = document.getElementById ("bgm")
 bgm.volume = 0.2
 
 let isDragging = false
 let color = "white"
+let audioIsEnabled = false
 
-/* TODO */
 function startBGM () {}
 
-window.addEventListener ("mousedown", startBGM, {once=true}) // start background music when user loads the page
+window.addEventListener ("MouseDown", startBGM, {once=true}) // start background music when user loads the page
 window.addEventListener ("touchstart", startBGM, {once=true}) // start background music when user clicks anywhere on the page
+
+// play the background music if audio is enabled and loop it //
+function toggleAudio () {
+    if (!audioIsEnabled) {
+    const bgm = new Audio ("assets/jazz.mp3")
+    bgm.loop = true
+    bgm.play ()
+    audioIsEnabled = true
+}
+}
 
 function setSize () {
     cnv.width = window.innerWidth
@@ -157,5 +166,6 @@ function createParticles (pos, col) {
         particlesArray.push (new Particle (10, col, pos))
     }
 }
+
 
 drawFrame ()
