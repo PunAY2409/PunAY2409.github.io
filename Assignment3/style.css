@@ -43,6 +43,11 @@ footer {
     display: block;
     width: 100vw;
     height: 100vh;
+
+    /* z-index = layer 1, inset just say the entire screen */
+    position: fixed;
+    inset: 0; 
+    z-index: 1;
 }
 
 /* Animating background gradient */
@@ -51,3 +56,24 @@ footer {
     50% {background-position: 100% 50%}
     100% {background-position: 0% 50%}
 }
+
+.topbar {
+    position: relative;
+    z-index: 2; /* layer 2, above the canvas */
+    text-align: center;
+    pointer-events: none; /* let's mouse click pass through the title area even tho text on top of canvas */
+}
+
+
+/*
+
+<mouse click>
+-----Layer 2-----
+|               |
+↓               ↓
+-----Layer 1-----
+|               |
+↓               ↓
+-----------------
+<draw still ok even with layers>
+*/
