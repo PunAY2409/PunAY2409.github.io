@@ -4,27 +4,25 @@ document.body.style.overflow = "hidden"
 
 const cnv = document.getElementById ("canvas")
 const ctx = cnv.getContext ("2d")
+
 const bgm = document.getElementById ("bgm")
-bgm.volume = 0.2
+bgm.volume = 1
 
 let isDragging = false
 let color = "white"
 let audioIsEnabled = false
 
-function startBGM () {}
-
-window.addEventListener ("MouseDown", startBGM, {once=true}) // start background music when user loads the page
-window.addEventListener ("touchstart", startBGM, {once=true}) // start background music when user clicks anywhere on the page
+function startBGM () { toggleAudio () }
 
 // play the background music if audio is enabled and loop it //
 function toggleAudio () {
-    if (!audioIsEnabled) {
-    const bgm = new Audio ("assets/jazz.mp3")
-    bgm.loop = true
+    if (audioIsEnabled) return 
     bgm.play ()
     audioIsEnabled = true
 }
-}
+
+window.addEventListener ("mousedown", startBGM, { once: true }) // start background music when user loads the page
+window.addEventListener ("touchstart", startBGM, { once: true }) // start background music when user clicks anywhere on the page
 
 function setSize () {
     cnv.width = window.innerWidth
@@ -51,8 +49,8 @@ class Particle {
         this.size = size
         this.col = col
         this.vel = {
-            x: (Math.random () - 0.5) * 1.6, // random velocity in x direction
-            y: (Math.random () - 0.5) * 1.6,  // random velocity in y direction
+            x: (Math.random () - 0.5) * 1.8, // random velocity in x direction
+            y: (Math.random () - 0.5) * 1.8,  // random velocity in y direction
         }
     }
 
@@ -86,14 +84,14 @@ class DisappearingCircle {
 
     // methods //
     animate () {
-        this.size -= 0.12
+        this.size -= 0.15
     }
 
     draw () {
         if (this.size <= 0) return
         ctx.fillStyle = this.col
         ctx.beginPath ()
-        ctx.arc (this.pos.x, this.pos.y, this.size, 0, 2 * Math.PI)
+        ctx.arc (this.pos.x, this.pos.y, this.size, 0, 5 * Math.PI)
         ctx.fill ()
     }
 
@@ -108,7 +106,7 @@ const circlesArray = []
 function handleMouseDown (event) {
     color = randomColor ()
     const pos = { x: event.offsetX, y: event.offsetY }
-    circlesArray.push (new DisappearingCircle (20, color, pos))
+    circlesArray.push (new DisappearingCircle (18, color, pos))
     isDragging = true   
 }
    
@@ -116,7 +114,7 @@ function handleMouseDown (event) {
 function handleMouseMove (event) {
     if (!isDragging) return
     const pos = { x: event.offsetX, y: event.offsetY }
-    circlesArray.push (new DisappearingCircle (16, color, pos))
+    circlesArray.push (new DisappearingCircle (18, color, pos))
 }
 
 function handleMouseUp (event) {
@@ -166,6 +164,5 @@ function createParticles (pos, col) {
         particlesArray.push (new Particle (10, col, pos))
     }
 }
-
 
 drawFrame ()

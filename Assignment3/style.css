@@ -20,9 +20,9 @@ body {
     justify-content: center;
     align-items: center;
 
-    background-image: linear-gradient(to right top, #fd621f, #f38a2a, #eaaa46, #e3c46c, #e0db96, #e4d18b, #e8c781, #ecbd79, #fb855e, #fb3a72, #d200a7, #332be5);
+    background-image: linear-gradient(to right top, #fd621f, #f38a2a, #eaaa46, #e3c46c, #e0db96, #e4d18b, #e9a444, #fb855e, #fb3a72, #d200a7, #2a1eff, #250b7c);
             background-size: 400% 400%;
-            animation: gradient 30s ease infinite; /* apply loop animation for gradient */
+            animation: gradient 20s ease infinite; /* apply loop animation for gradient */
 }
 
 footer {
